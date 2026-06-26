@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prediction Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Prediction Result</h1>
+
+<table>
+
+<tr>
+
+<th>Prediction</th>
+
+<td>
+
+{% if result.prediction == 1 %}
+
+Customer Will Churn
+
+{% else %}
+
+Customer Will Not Churn
+
+{% endif %}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>Churn Probability</th>
+
+<td>{{ "%.2f"|format(result.probability*100) }}%</td>
+
+</tr>
+
+<tr>
+
+<th>Risk Level</th>
+
+<td>{{ result.risk }}</td>
+
+</tr>
+
+<tr>
+
+<th>Recommendation</th>
+
+<td>{{ result.action }}</td>
+
+</tr>
+
+</table>
+
+<br>
+
+<a href="/">Predict Another Customer</a>
+
+</div>
+
+</body>
+
+</html>

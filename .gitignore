@@ -1,0 +1,24 @@
+# Virtual Environment
+venv/
+
+# MLflow
+mlruns/
+
+# Processed Data
+data/processed/
+
+# Trained Models
+models/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Environment Variables
+.env

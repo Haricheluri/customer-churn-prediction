@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Customer Churn Prediction</h1>
+
+        <form action="/predict" method="POST">
+
+            <label for="monthly_spend">Monthly Spend</label>
+            <input type="number" id="monthly_spend" name="monthly_spend" required>
+
+            <label for="tenure_months_x">Tenure (Months)</label>
+            <input type="number" id="tenure_months_x" name="tenure_months_x" required>
+
+            <label for="contract_type_x">Contract Type</label>
+            <select id="contract_type_x" name="contract_type_x" required>
+                <option value="month-to-month">Month-to-Month</option>
+                <option value="annual">Annual</option>
+                <option value="biennial">Biennial</option>
+            </select>
+
+            <label for="payment_method_x">Payment Method</label>
+            <select id="payment_method_x" name="payment_method_x" required>
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="ach">ACH</option>
+                <option value="invoice">Invoice</option>
+            </select>
+
+            <label for="support_tickets_30d">Support Tickets (30 Days)</label>
+            <input type="number" id="support_tickets_30d" name="support_tickets_30d" required>
+
+            <label for="complaint_count">Complaint Count</label>
+            <input type="number" id="complaint_count" name="complaint_count" required>
+
+            <label for="satisfaction_score">Satisfaction Score</label>
+            <input type="number" id="satisfaction_score" name="satisfaction_score" min="1" max="5" required>
+
+            <label for="days_since_last_order">Days Since Last Order</label>
+            <input type="number" id="days_since_last_order" name="days_since_last_order" required>
+
+            <button type="submit">Predict Churn</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

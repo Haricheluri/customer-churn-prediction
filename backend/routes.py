@@ -22,15 +22,19 @@ def predict():
 
     customer_data = request.form.to_dict()
 
+    # Numerical features
     customer_data["monthly_spend"] = float(customer_data["monthly_spend"])
     customer_data["tenure_months_x"] = int(customer_data["tenure_months_x"])
-    customer_data["support_tickets_30d"] = int(customer_data["support_tickets_30d"])
+    customer_data["num_products_owned"] = int(customer_data["num_products_owned"])
     customer_data["complaint_count"] = int(customer_data["complaint_count"])
     customer_data["satisfaction_score"] = int(customer_data["satisfaction_score"])
-    customer_data["days_since_last_order"] = int(customer_data["days_since_last_order"])
+    customer_data["autopay"] = int(customer_data["autopay"])
+    customer_data["age"] = int(customer_data["age"])
 
+    # Predict
     result = predict_churn(customer_data)
 
+    # Recommendation
     recommendation = get_recommendation(
         result["prediction"],
         result["probability"]

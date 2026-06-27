@@ -1,60 +1,24 @@
-# Customer Churn Prediction & Retention Recommendation System
+# Customer Churn Prediction
 
-A Machine Learning web application that predicts whether a customer is likely to churn and provides personalized retention recommendations based on the predicted risk level.
+## Overview
 
----
+Customer Churn Prediction is an end-to-end Machine Learning project that predicts whether a customer is likely to churn based on customer demographics, subscription details, billing information, engagement metrics, purchasing behavior, and campaign responses.
 
-## Project Overview
+The project includes:
 
-Customer churn is one of the biggest challenges for subscription-based and service-oriented businesses. This project predicts customer churn using Machine Learning and recommends suitable retention strategies to reduce customer loss.
-
----
-
-## Features
-
-- Customer churn prediction
-- Churn probability estimation
-- Risk level classification
-- Personalized retention recommendations
-- User-friendly Flask web application
-- MLflow experiment tracking
-- LightGBM machine learning model
+* Data Preparation Pipeline
+* Data Preprocessing
+* Feature Engineering
+* Model Training & Comparison
+* MLflow Experiment Tracking
+* Flask Web Application
+* Customer Retention Recommendations
 
 ---
 
-## Tech Stack
+# Project Structure
 
-### Machine Learning
-
-- Python
-- Scikit-learn
-- LightGBM
-- Pandas
-- NumPy
-
-### Visualization
-
-- Matplotlib
-- Seaborn
-
-### Backend
-
-- Flask
-
-### Frontend
-
-- HTML
-- CSS
-
-### Experiment Tracking
-
-- MLflow
-
----
-
-## Project Structure
-
-```
+```text
 customer-churn-prediction/
 │
 ├── backend/
@@ -67,87 +31,83 @@ customer-churn-prediction/
 │   ├── result.html
 │   └── style.css
 │
-├── models/
-│   ├── model.pkl
-│   └── preprocessor.pkl
-│
-├── notebooks/
-│   └── Customer_Churn_Prediction.ipynb
-│
 ├── src/
+│   ├── prepare_data.py
+│   ├── data_preprocessing.py
+│   ├── train.py
 │   └── predict.py
 │
 ├── data/
+│   ├── raw/
+│   └── processed/
 │
+├── models/
+│   ├── churn_pipeline.pkl
+│   └── template_customer.csv
+│
+├── notebooks/
+├── mlruns/
 ├── requirements.txt
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
 ---
 
-## Machine Learning Workflow
+# Workflow
 
-- Data Collection
-- Data Cleaning
-- Exploratory Data Analysis (EDA)
-- Feature Engineering
-- Data Preprocessing
-- Feature Selection
-- Model Training
-- Hyperparameter Tuning
-- Model Evaluation
-- MLflow Experiment Tracking
-- Model Deployment using Flask
-
----
-
-## Model Performance
-
-| Metric | Score |
-|---------|--------|
-| Accuracy | 92.82% |
-| Precision | 100% |
-| Recall | 83.37% |
-| F1 Score | 90.93% |
-| ROC-AUC | 91.57% |
-| Cross Validation Accuracy | 92.72% |
+1. Load raw datasets
+2. Clean customer and order data
+3. Merge all datasets
+4. Perform feature engineering
+5. Preprocess data
+6. Compare multiple ML models
+7. Select the best-performing model
+8. Save trained pipeline
+9. Deploy with Flask
+10. Predict customer churn
 
 ---
 
-## Risk Categories
+# Models Compared
 
-| Probability | Risk Level |
-|-------------|------------|
-| 0–20% | Very Low |
-| 20–40% | Low |
-| 40–60% | Medium |
-| 60–80% | High |
-| 80–100% | Very High |
+* Logistic Regression
+* Random Forest
+* XGBoost
+* LightGBM
+
+The model with the highest cross-validation accuracy is automatically selected and saved.
 
 ---
 
-## Installation
+# Technologies Used
 
-Clone the repository
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* LightGBM
+* XGBoost
+* MLflow
+* Flask
+* HTML
+* CSS
+
+---
+
+# How to Run
+
+## 1. Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/customer-churn-prediction.git
-```
-
-Navigate to the project
-
-```bash
+git clone <repository-url>
 cd customer-churn-prediction
 ```
 
-Create a virtual environment
+## 2. Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
-
-Activate the virtual environment
 
 Windows
 
@@ -155,19 +115,63 @@ Windows
 venv\Scripts\activate
 ```
 
-Install dependencies
+Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the Flask application
+## 4. Prepare Dataset
+
+```bash
+python -m src.prepare_data
+```
+
+This command:
+
+* Cleans datasets
+* Creates processed datasets
+* Generates `final_customer_data.csv`
+
+---
+
+## 5. Train Model
+
+```bash
+python -m src.train
+```
+
+This command:
+
+* Performs preprocessing
+* Compares multiple ML models
+* Tracks experiments using MLflow
+* Saves the trained pipeline
+* Creates prediction template
+
+Generated files:
+
+```
+models/churn_pipeline.pkl
+
+models/template_customer.csv
+```
+
+---
+
+## 6. Start Flask Application
 
 ```bash
 python -m backend.app
 ```
 
-Open
+Open:
 
 ```
 http://127.0.0.1:5000
@@ -175,15 +179,13 @@ http://127.0.0.1:5000
 
 ---
 
-## MLflow
-
-Start the MLflow UI
+## 7. View MLflow Dashboard
 
 ```bash
 mlflow ui
 ```
 
-Open
+Open:
 
 ```
 http://127.0.0.1:5000
@@ -191,27 +193,65 @@ http://127.0.0.1:5000
 
 ---
 
-## Future Enhancements
+# Prediction Inputs
 
-- Customer segmentation
-- SHAP explainability
-- Docker support
-- Azure App Service deployment
-- CI/CD using Azure DevOps
-- Real-time prediction API
+The web application predicts customer churn using:
+
+* Monthly Spend
+* Tenure
+* Contract Type
+* Payment Method
+* Number of Products
+* Complaint Count
+* Satisfaction Score
+* Autopay
+* Age
+* Gender
+* Customer Segment
+
+The remaining model features are automatically populated using a template dataset.
 
 ---
 
-## Author
+# Project Outputs
 
-**Hari Haran**
-
-B.Tech – Computer Science & Data Science
-
-GitHub: https://github.com/Haricheluri
+* Customer Churn Prediction
+* Churn Probability
+* Risk Level
+* Retention Recommendation
 
 ---
 
-## License
+# About the Notebooks
 
-This project is developed for educational and portfolio purposes.
+The Jupyter notebooks included in this project are provided for experimentation, exploratory data analysis (EDA), feature engineering, and model development.
+
+The production pipeline does **not** depend on the notebooks.
+
+All required functionality has been converted into reusable Python scripts located in the `src/` directory.
+
+To reproduce the project, users only need to execute:
+
+```bash
+python -m src.prepare_data
+python -m src.train
+python -m backend.app
+```
+
+without running any notebook.
+
+---
+
+# Notes
+
+* All preprocessing steps are included inside the training pipeline.
+* The saved pipeline performs preprocessing and prediction together.
+* Unknown categorical values are handled automatically.
+* MLflow is used for experiment tracking.
+* Random Forest is automatically selected if it achieves the best validation performance.
+
+---
+
+# Author
+
+Hari Haran Cheluru

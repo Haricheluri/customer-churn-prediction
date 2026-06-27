@@ -5,57 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Churn Prediction</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Customer Churn Prediction</h1>
+<h1>Customer Churn Prediction</h1>
 
-        <form action="/predict" method="POST">
+<form action="/predict" method="POST">
 
-            <label for="monthly_spend">Monthly Spend</label>
-            <input type="number" id="monthly_spend" name="monthly_spend" required>
+<label for="monthly_spend">Monthly Spend ($)</label>
+<input type="number" step="0.01" id="monthly_spend" name="monthly_spend" required>
 
-            <label for="tenure_months_x">Tenure (Months)</label>
-            <input type="number" id="tenure_months_x" name="tenure_months_x" required>
+<label for="tenure_months_x">Tenure (Months)</label>
+<input type="number" id="tenure_months_x" name="tenure_months_x" min="0" required>
 
-            <label for="contract_type_x">Contract Type</label>
-            <select id="contract_type_x" name="contract_type_x" required>
-                <option value="month-to-month">Month-to-Month</option>
-                <option value="annual">Annual</option>
-                <option value="biennial">Biennial</option>
-            </select>
+<label for="contract_type_x">Contract Type</label>
+<select id="contract_type_x" name="contract_type_x" required>
+    <option value="monthly">Monthly</option>
+    <option value="annual">Annual</option>
+    <option value="biennial">Biennial</option>
+</select>
 
-            <label for="payment_method_x">Payment Method</label>
-            <select id="payment_method_x" name="payment_method_x" required>
-                <option value="credit_card">Credit Card</option>
-                <option value="paypal">PayPal</option>
-                <option value="ach">ACH</option>
-                <option value="invoice">Invoice</option>
-            </select>
+<label for="payment_method_x">Payment Method</label>
+<select id="payment_method_x" name="payment_method_x" required>
+    <option value="credit_card">Credit Card</option>
+    <option value="paypal">PayPal</option>
+    <option value="ach">ACH</option>
+    <option value="invoice">Invoice</option>
+</select>
 
-            <label for="support_tickets_30d">Support Tickets (30 Days)</label>
-            <input type="number" id="support_tickets_30d" name="support_tickets_30d" required>
+<label for="num_products_owned">Number of Products</label>
+<input type="number" id="num_products_owned" name="num_products_owned" min="1" required>
 
-            <label for="complaint_count">Complaint Count</label>
-            <input type="number" id="complaint_count" name="complaint_count" required>
+<label for="complaint_count">Complaint Count</label>
+<input type="number" id="complaint_count" name="complaint_count" min="0" required>
 
-            <label for="satisfaction_score">Satisfaction Score</label>
-            <input type="number" id="satisfaction_score" name="satisfaction_score" min="1" max="5" required>
+<label for="satisfaction_score">Satisfaction Score</label>
+<input type="number" id="satisfaction_score" name="satisfaction_score" min="1" max="5" required>
 
-            <label for="days_since_last_order">Days Since Last Order</label>
-            <input type="number" id="days_since_last_order" name="days_since_last_order" required>
+<label for="autopay">Autopay</label>
+<select id="autopay" name="autopay" required>
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+</select>
 
-            <button type="submit">Predict Churn</button>
+<label for="age">Age</label>
+<input type="number" id="age" name="age" min="18" max="100" required>
 
-        </form>
+<label for="gender">Gender</label>
+<select id="gender" name="gender" required>
+    <option value="M">Male</option>
+    <option value="F">Female</option>
+</select>
 
-    </div>
+<label for="segment">Customer Segment</label>
+<select id="segment" name="segment" required>
+    <option value="Bronze">Bronze</option>
+    <option value="Silver">Silver</option>
+    <option value="Gold">Gold</option>
+    <option value="Platinum">Platinum</option>
+</select>
+
+<button type="submit">Predict Churn</button>
+
+</form>
+
+</div>
 
 </body>
-
 </html>
